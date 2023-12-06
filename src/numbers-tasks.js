@@ -238,8 +238,11 @@ function isPrime(n) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
+function toNumber(value, def) {
+  if (Number.isNaN(+value)) {
+    return def;
+  }
+  return +value;
 }
 
 /**
@@ -253,8 +256,8 @@ function toNumber(/* value, def */) {
  *   -2 => -8
  *   0  => 0
  */
-function getCube(/* num */) {
-  throw new Error('Not implemented');
+function getCube(num) {
+  return num ** 3;
 }
 
 /**
@@ -270,8 +273,20 @@ function getCube(/* num */) {
  *   3  => 2
  *   10 => 55
  */
-function getFibonacciNumber(/* index */) {
-  throw new Error('Not implemented');
+function getFibonacciNumber(index) {
+  if (index !== 0) {
+    let fib1 = 1;
+    let fib2 = 1;
+    let i = 0;
+    while (i < index - 2) {
+      const fibSum = fib1 + fib2;
+      fib1 = fib2;
+      fib2 = fibSum;
+      i += 1;
+    }
+    return fib2;
+  }
+  return 0;
 }
 
 /**
@@ -285,8 +300,12 @@ function getFibonacciNumber(/* index */) {
  *   10 => 55 // (1+2+3+...+10)
  *   1  => 1
  */
-function getSumToN(/* n */) {
-  throw new Error('Not implemented');
+function getSumToN(n) {
+  let sum = 0;
+  for (let i = 1; i <= n; i += 1) {
+    sum += i;
+  }
+  return sum;
 }
 
 /**
@@ -300,8 +319,13 @@ function getSumToN(/* n */) {
  *   202 => 4  // (2+0+2)
  *   5   => 5  // 5
  */
-function getSumOfDigits(/* num */) {
-  throw new Error('Not implemented');
+function getSumOfDigits(num) {
+  let sum = 0;
+  const str = String(num);
+  for (let i = 0; i < str.length; i += 1) {
+    sum += Number(str[i]);
+  }
+  return sum;
 }
 
 /**
@@ -315,8 +339,13 @@ function getSumOfDigits(/* num */) {
  *   16  => true
  *   15  => false
  */
-function isPowerOfTwo(/* num */) {
-  throw new Error('Not implemented');
+function isPowerOfTwo(num) {
+  for (let i = 0; i < num; i += 1) {
+    if (2 ** i === num) {
+      return true;
+    }
+  }
+  return false;
 }
 
 /**
@@ -329,8 +358,8 @@ function isPowerOfTwo(/* num */) {
  *   0 => 0
  *   Math.PI / 2 => 1
  */
-function getSine(/* num */) {
-  throw new Error('Not implemented');
+function getSine(num) {
+  return Math.sin(num);
 }
 
 /**
@@ -344,8 +373,8 @@ function getSine(/* num */) {
  * 255, 16 => 'ff'
  * 2, 2    => '10'
  */
-function numberToStringInBase(/* number, base */) {
-  throw new Error('Not implemented');
+function numberToStringInBase(number, base) {
+  return number.toString(base);
 }
 
 /**
@@ -358,8 +387,8 @@ function numberToStringInBase(/* number, base */) {
  * @example:
  * 12345, 2    => '1.23e+4'
  */
-function toExponential(/* number, fractionDigits */) {
-  throw new Error('Not implemented');
+function toExponential(number, fractionDigits) {
+  return number.toExponential(fractionDigits);
 }
 
 /**
@@ -373,8 +402,8 @@ function toExponential(/* number, fractionDigits */) {
  * 12345, 2    => '12345.00'
  * 12.345, 1   => '12.3'
  */
-function toFixed(/* number, fractionDigits */) {
-  throw new Error('Not implemented');
+function toFixed(number, fractionDigits) {
+  return number.toFixed(fractionDigits);
 }
 
 /**
@@ -389,8 +418,8 @@ function toFixed(/* number, fractionDigits */) {
  * 12345, 7    => '12345.00'
  * 12.345, 4   => '12.35'
  */
-function toPrecision(/* number, precision */) {
-  throw new Error('Not implemented');
+function toPrecision(number, precision) {
+  return number.toPrecision(precision);
 }
 
 /**
